@@ -38,6 +38,7 @@ const (
 	EnforceOverlappingWildcards
 	// Set orders to status "ready" when they are awaiting finalization
 	OrderReadyStatus
+	AllowTLSALPN01Challenge
 )
 
 // List of features and their default value, protected by fMu
@@ -59,6 +60,7 @@ var features = map[FeatureFlag]bool{
 	ForceConsistentStatus:       false,
 	EnforceOverlappingWildcards: false,
 	OrderReadyStatus:            false,
+	AllowTLSALPN01Challenge:     false,
 }
 
 var fMu = new(sync.RWMutex)
