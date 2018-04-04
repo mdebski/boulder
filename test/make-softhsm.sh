@@ -17,10 +17,10 @@ cd $(dirname $0)
 export SOFTHSM2_CONF=$PWD/softhsm2.conf
 mkdir -p $PWD/softhsm2-tokens
 echo "directories.tokendir = $PWD/softhsm2-tokens" > ${SOFTHSM2_CONF}
-softhsm2-util --slot 0 --init-token --label intermediate --pin 5678 --so-pin 1234
-softhsm2-util --slot 0 --import test-ca.key  --label intermediate_key --pin 5678 --id FB
-softhsm2-util --slot 1 --init-token --label root --pin 5678 --so-pin 1234
-softhsm2-util --slot 1 --import test-root.key  --label root_key --pin 5678 --id FA
+softhsm2-util --free --init-token --label intermediate --pin 5678 --so-pin 1234
+softhsm2-util --token intermediate --import test-ca.key  --label intermediate_key --pin 5678 --id FB
+softhsm2-util --free --init-token --label root --pin 5678 --so-pin 1234
+softhsm2-util --token root --import test-root.key  --label root_key --pin 5678 --id FA
 echo
 echo "Add this to your .bashrc:"
 echo "export SOFTHSM2_CONF=${SOFTHSM2_CONF}"
